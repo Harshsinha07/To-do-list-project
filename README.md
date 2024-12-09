@@ -1,19 +1,21 @@
-# To-Do List Application
+# To-Do App with User Management
 
-A simple **To-Do List Application** built with **Java** and **MySQL** that allows users to add, view, update, and delete tasks.
+This project is a To-Do List application built using Spring Boot for the backend and HTML, CSS, JavaScript, and Bootstrap for the frontend. The app provides basic task management functionality such as adding, viewing, and removing tasks, and marking them as completed. It also includes user management features like login and registration pages.
 
 ## Features
 
-- Add new tasks
-- View all tasks
-- Mark tasks as completed
-- Delete tasks
+- User Management: Login and Registration pages with form validation.
+- Task Management: Add, View, Remove, and Mark tasks as completed.
+- Responsive Design: The frontend is responsive, styled using Bootstrap for mobile compatibility.
+- Database Integration: MySQL database used for storing tasks and user data.
+- Validation: JavaScript validation on forms for user inputs (e.g., email format, password strength).
 
 ## Technologies Used
 
-- **Java**: Main programming language
-- **MySQL**: Database to store tasks
-- **JDBC**: Java Database Connectivity to interact with MySQL
+- **Backend**: Spring Boot
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap
+- **Database**: MySQL
+- **Build Tool**: Maven
 
 ## Prerequisites
 
@@ -69,16 +71,32 @@ java -cp ".;lib/mysql-connector-java-8.x.x.jar;src" src.TodoApp
 ```bash
 ToDoApp/
 │
-├── src/                  # Source files
-│   ├── TodoApp.java      # Main class with user interface
-│   ├── Task.java         # Task class with properties and methods
-│   ├── TaskDAO.java      # Interface for task operations
-│   ├── TaskDAOImpl.java  # Implementation of TaskDAO interface
+├── src/                                # Java Backend
+│   ├── main/
+│   │   ├── java/com/todo/
+│   │   │   ├── TodoApp.java            # Main Spring Boot application
+│   │   │   ├── Task.java               # Task class with properties
+│   │   │   ├── TaskDAO.java            # Interface for task operations
+│   │   │   ├── TaskDAOImpl.java        # Implementation of TaskDAO interface
+│   │   │   └── TaskController.java     # REST Controller for Task management
+│   │   └── resources/
+│   │       ├── application.properties  # MySQL and server config
+│   │       ├── static/
+│   │       │   ├── css/
+│   │       │   │   └── styles.css      # CSS for styling
+│   │       │   ├── js/
+│   │       │   │   └── app.js          # JavaScript for form validation
+│   │       │   ├── index.html          # Login page
+│   │       │   └── register.html       # Registration page
+│   │       └── templates/              # Template folder for future views
+├── lib/                                # MySQL JDBC Driver
+│   └── mysql-connector-java-8.x.x.jar
 │
-├── lib/                  # MySQL JDBC driver (mysql-connector-java.jar)
-├── .vscode/              # VS Code settings
-│   └── settings.json     # VS Code project settings
-├── README.md             # Project documentation
-└── mysql-connector-java-8.x.x.jar  # MySQL JDBC driver
+├── .vscode/
+│   └── settings.json                   # VS Code project settings
+│
+├── pom.xml                             # Maven dependencies and build configuration
+├── README.md                           # Project documentation
+
 ```
 
