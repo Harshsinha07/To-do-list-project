@@ -4,12 +4,10 @@ This project is a To-Do List application built using Spring Boot for the backend
 
 ## Features
 
-- User Management: Login and Registration pages with form validation.
-- Task Management: Add, View, Remove, and Mark tasks as completed.
-- Responsive Design: The frontend is responsive, styled using Bootstrap for mobile compatibility.
-- Database Integration: MySQL database used for storing tasks and user data.
-- Validation: JavaScript validation on forms for user inputs (e.g., email format, password strength).
-
+- User Registration: Users can register by providing a username and password.
+- User Login: Users can log in with their registered credentials.
+- Task Management: Users can create, view, and mark tasks as completed.
+- JSP-based frontend: Uses JSP for rendering dynamic views.
 ## Technologies Used
 
 - **Backend**: Spring Boot
@@ -69,34 +67,62 @@ java -cp ".;lib/mysql-connector-java-8.x.x.jar;src" src.TodoApp
 
 ## Project Structure
 ```bash
-ToDoApp/
+ToDo-App/
 │
-├── src/                                # Java Backend
-│   ├── main/
-│   │   ├── java/com/todo/
-│   │   │   ├── TodoApp.java            # Main Spring Boot application
-│   │   │   ├── Task.java               # Task class with properties
-│   │   │   ├── TaskDAO.java            # Interface for task operations
-│   │   │   ├── TaskDAOImpl.java        # Implementation of TaskDAO interface
-│   │   │   └── TaskController.java     # REST Controller for Task management
-│   │   └── resources/
-│   │       ├── application.properties  # MySQL and server config
-│   │       ├── static/
-│   │       │   ├── css/
-│   │       │   │   └── styles.css      # CSS for styling
-│   │       │   ├── js/
-│   │       │   │   └── app.js          # JavaScript for form validation
-│   │       │   ├── index.html          # Login page
-│   │       │   └── register.html       # Registration page
-│   │       └── templates/              # Template folder for future views
-├── lib/                                # MySQL JDBC Driver
-│   └── mysql-connector-java-8.x.x.jar
+├── backend/                          # Backend folder (Spring Boot)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/todo/        # Java backend code
+│   │   │   │   ├── TodoApp.java      # Main application entry point
+│   │   │   │   ├── Task.java         # Task entity
+│   │   │   │   ├── TaskRepository.java  # Spring Data JPA repository
+│   │   │   │   ├── TaskService.java  # Service layer for business logic
+│   │   │   │   └── TaskController.java  # REST controller for endpoints
+│   │   │   └── resources/
+│   │   │       ├── application.properties  # Configuration (DB, server, etc.)
+│   │   │       ├── schema.sql             # Optional: DB schema (if needed)
+│   │   │       ├── static/                # Static resources (CSS, JS, Images, HTML files)
+│   │   │       │   ├── index.html        # Login Page HTML
+│   │   │       │   ├── register.html     # Registration Page HTML
+│   │   │       └── templates/             # Templates folder for JSP files
+│   │   │           ├── index.jsp         # Login Page JSP
+│   │   │           ├── register.jsp      # Registration Page JSP
+│   │   │           ├── home.jsp          # Home Page after Login
+│   │   │           ├── taskList.jsp      # Page to list tasks
+│   │   │           └── addTask.jsp       # Add New Task Page JSP
+│   │   └── test/
+│   │       └── java/com/todo/              # Test cases
+│   │
+│   └── pom.xml                            # Maven dependencies for Spring Boot
 │
-├── .vscode/
-│   └── settings.json                   # VS Code project settings
+├── lib/
+│   └── mysql-connector-java-8.x.x.jar    # JDBC Driver (Optional if using Maven)
 │
-├── pom.xml                             # Maven dependencies and build configuration
-├── README.md                           # Project documentation
+└── .vscode/
+    └── settings.json                     # VS Code settings
+                          # Project documentation
 
 ```
 
+Endpoints
+Task Management
+GET /tasks: List all tasks.
+POST /tasks: Create a new task.
+PUT /tasks/{id}: Update an existing task.
+DELETE /tasks/{id}: Delete a task.
+
+User Authentication
+POST /login: Authenticate user.
+POST /register: Register a new user.
+
+
+
+Testing
+The project includes test cases located under src/test/java/com/todo/. You can run the tests using the following command:
+
+```bash
+mvn test
+```
+Notes
+JSP Files: The frontend is built using JSP, and the views are rendered dynamically from the backend.
+MySQL Setup: If you're using a different database, update the application.properties file accordingly.
